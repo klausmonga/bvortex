@@ -1,0 +1,53 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "27db3ec72aa90845c530f102c3c71992",
+    "packages": [
+        {
+            "name": "yetupay/api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/klausmonga/yetupay_api_php.git",
+                "reference": "1371a6993bcb4c96eca5ded0e55e368a107efa48"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/klausmonga/yetupay_api_php/zipball/1371a6993bcb4c96eca5ded0e55e368a107efa48",
+                "reference": "1371a6993bcb4c96eca5ded0e55e368a107efa48",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "yetupay\\api\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "klausmonga",
+                    "email": "klaus@digitalsense.sarl"
+                }
+            ],
+            "description": "this library is a wrapper code for our yetupay api",
+            "time": "2020-05-31T17:23:59+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "yetupay/api": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

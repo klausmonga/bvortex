@@ -1,0 +1,37 @@
+[
+    {
+        "name": "yetupay/api",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/klausmonga/yetupay_api_php.git",
+            "reference": "1371a6993bcb4c96eca5ded0e55e368a107efa48"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/klausmonga/yetupay_api_php/zipball/1371a6993bcb4c96eca5ded0e55e368a107efa48",
+            "reference": "1371a6993bcb4c96eca5ded0e55e368a107efa48",
+            "shasum": ""
+        },
+        "time": "2020-05-31T17:23:59+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "yetupay\\api\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "klausmonga",
+                "email": "klaus@digitalsense.sarl"
+            }
+        ],
+        "description": "this library is a wrapper code for our yetupay api"
+    }
+]

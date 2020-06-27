@@ -1,0 +1,16 @@
+{
+    "name": "ktech/yetupay",
+    "description": "ecommerce for electronics",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "klausmonga",
+            "email": "klaus@ktech.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "yetupay/api": "dev-master"
+    }
+}
