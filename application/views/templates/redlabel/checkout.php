@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+<?php 
+$shipping=26;
+?>
 <div class="container" id="checkout-page">
     <?php
     if ($cartItems['array'] != null) {
@@ -131,8 +134,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </tbody>
                         </table>
                     </div>
+                
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                           <div class="custom-control custom-switch">
+                                <input type="hidden" name="totalShipping" value="<?= $cartItems['finalSum'] + $shipping ?>">
+                                <input type="hidden" name="coutShipping" value="<?=$shipping ?>">
+                                <input type="checkbox" name="is_for_delevery" id="customSwitch1" onclick="show()">
+                                <label class="custom-control-label" for="customSwitch1">Livraison à domicile</label>
+                            </div>
+                        </div>
+                        <div class="panel-body" id="panelbody" style="display:none">
+                            <div class="alert alert-success" role="alert">
+                                <p>Total Panier : <?= $cartItems['finalSum'] ?> <?= CURRENCY ?></p>
+                                <p>Livrasion : <?= $shipping ?> <?= CURRENCY ?></p>
+                            </div>
+                            <div class="alert alert-info" role="alert"><p>Total : <?= $cartItems['finalSum']+ $shipping ?> <?= CURRENCY ?></p></div>
+                        </div>
+                    </div>
                 </form>
                 <div>
+
+                    
+                   
+                    
                     <a href="<?= LANG_URL ?>" class="btn btn-primary go-shop">
                         <span class="glyphicon glyphicon-circle-arrow-left"></span>
                         <?= lang('back_to_shop') ?>
@@ -173,3 +198,13 @@ if ($this->session->flashdata('deleted')) {
         });
     </script>
 <?php } ?>
+<script>
+    function show(){ 
+        var checkBox = document.getElementById("customSwitch1");
+        var text = document.getElementById("panelbody");
+        if (checkBox.checked == true){
+        text.style.display = "block";
+        } else {
+        text.style.display = "none";
+        }}
+</script>

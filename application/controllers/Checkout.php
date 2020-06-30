@@ -124,8 +124,14 @@ class Checkout extends MY_Controller
                 $pp->addProduct($vendor['url'],$product['price'],$_POST['quantity'][$a],$product['title'],$product['title']);
                 $a=$a+1;   
             }
+            if(isset($_POST['is_for_delevery'])){
+                $pp->addProduct($vendor['url'],$_POST['coutShipping'],1,'livraison','bvortex livraison');
+            }
+            var_dump($pp->getProductsList());
+            die();
             $pp->addP_info("usd",10);
             $pp->addRun_env("json");
+            
             $response = json_decode($pp->commit());
             if (array_key_exists("error",$response)) {
                 redirect(LANG_URL . '/checkout/faildcash');
