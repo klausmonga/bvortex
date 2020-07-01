@@ -34,25 +34,7 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <?php if ($multiVendor == 1) { ?>
-                    <div id="top-user-panel">
-                        <div class="container">
-                            <a href="<?= LANG_URL . '/vendor/register' ?>" class="btn btn-default"><?= lang('register_me') ?></a>
-                            <form class="form-inline" method="POST" action="<?= LANG_URL . '/vendor/login' ?>">
-                                <div class="form-group">
-                                    <input type="email" name="u_email" class="form-control" placeholder="<?= lang('email') ?>">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="u_password" class="form-control" placeholder="<?= lang('password') ?>">
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" name="remember_me"><?= lang('remember_me') ?></label>
-                                </div>
-                                <button type="submit" name="login" class="btn btn-default"><?= lang('u_login') ?></button>
-                            </form> 
-                        </div>
-                    </div>
-                <?php } ?>
+                
                 <div id="languages-bar">
                     <div class="container">
                         <?php
@@ -87,6 +69,7 @@
                     </div>
                 </div>
                 <div id="top-part">
+
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12 col-md-3 col-lg-4 left">
@@ -95,7 +78,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-6 col-md-5 col-lg-5">
-                                <div class="input-group" id="adv-search">
+                                <div class="input-group" id="adv-search"> 
                                     <input type="text" value="<?= isset($_GET['search_in_title']) ? $_GET['search_in_title'] : '' ?>" id="search_in_title" class="form-control" placeholder="<?= lang('search_by_keyword_title') ?>" />
                                     <div class="input-group-btn">
                                         <div class="btn-group" role="group">
@@ -235,6 +218,17 @@
                                 <li<?= uri_string() == 'checkout' || uri_string() == MY_LANGUAGE_ABBR . '/checkout' ? ' class="active"' : '' ?>><a href="<?= LANG_URL . '/checkout' ?>"><?= lang('checkout') ?></a></li>
                                 <li<?= uri_string() == 'shopping-cart' || uri_string() == MY_LANGUAGE_ABBR . '/shopping-cart' ? ' class="active"' : '' ?>><a href="<?= LANG_URL . '/shopping-cart' ?>"><?= lang('shopping_cart') ?></a></li>
                                 <li<?= uri_string() == 'contacts' || uri_string() == MY_LANGUAGE_ABBR . '/contacts' ? ' class="active"' : '' ?>><a href="<?= LANG_URL . '/contacts' ?>"><?= lang('contacts') ?></a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="<?= base_url('/vendor/login') ?>">
+                                        <i>
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-briefcase" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-6h-1v6a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-6H0v6z"/>
+                                                <path fill-rule="evenodd" d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5v2.384l-7.614 2.03a1.5 1.5 0 0 1-.772 0L0 6.884V4.5zM1.5 4a.5.5 0 0 0-.5.5v1.616l6.871 1.832a.5.5 0 0 0 .258 0L15 6.116V4.5a.5.5 0 0 0-.5-.5h-13zM5 2.5A1.5 1.5 0 0 1 6.5 1h3A1.5 1.5 0 0 1 11 2.5V3h-1v-.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V3H5v-.5z"/>
+                                            </svg> Vendeur
+                                        </i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
