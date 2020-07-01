@@ -1,25 +1,6 @@
 <footer>
     <div class="footer" id="footer">
         <div class="container">
-        <?php if ($multiVendor == 1) { ?>
-                    <div id="top-user-panel">
-                        <div class="container">
-                            <a href="<?= LANG_URL . '/vendor/register' ?>" class="btn btn-default"><?= lang('register_me') ?></a>
-                            <form class="form-inline" method="POST" action="<?= LANG_URL . '/vendor/login' ?>">
-                                <div class="form-group">
-                                    <input type="email" name="u_email" class="form-control" placeholder="<?= lang('email') ?>">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="u_password" class="form-control" placeholder="<?= lang('password') ?>">
-                                </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" name="remember_me"><?= lang('remember_me') ?></label>
-                                </div>
-                                <button type="submit" name="login" class="btn btn-default"><?= lang('u_login') ?></button>
-                            </form> 
-                        </div>
-                    </div>
-                <?php } ?>
             <div class="row">
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6 f-col">
                     <h3><?= lang('about_us') ?></h3>
