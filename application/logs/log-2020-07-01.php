@@ -30,3 +30,14 @@ ERROR - 2020-07-01 12:26:05 --> Could not find the language line "vendor_home_pa
 ERROR - 2020-07-01 12:38:30 --> Could not find the language line "vendor_home_page"
 ERROR - 2020-07-01 12:41:23 --> Could not find the language line "vendor_home_page"
 ERROR - 2020-07-01 12:55:04 --> Could not find the language line "vendor_home_page"
+ERROR - 2020-07-01 14:43:12 --> 404 Page Not Found: /index
+ERROR - 2020-07-01 14:43:22 --> 404 Page Not Found: /index
+ERROR - 2020-07-01 14:43:38 --> Could not find the language line "vendor_home_page"
+ERROR - 2020-07-01 14:44:12 --> Severity: Notice --> Undefined index: brand_id C:\xampp\htdocs\bvortex\application\modules\vendor\models\Products_model.php 34
+ERROR - 2020-07-01 14:44:38 --> Could not find the language line "vendor_home_page"
+ERROR - 2020-07-01 14:46:55 --> Severity: Notice --> Undefined index: folder C:\xampp\htdocs\bvortex\application\modules\vendor\controllers\AddProduct.php 83
+ERROR - 2020-07-01 14:46:55 --> Severity: Notice --> Undefined index: others C:\xampp\htdocs\bvortex\application\modules\vendor\controllers\AddProduct.php 91
+ERROR - 2020-07-01 14:46:55 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable C:\xampp\htdocs\bvortex\application\modules\vendor\controllers\AddProduct.php 91
+ERROR - 2020-07-01 14:47:01 --> Image Upload Error: <p>You did not select a file to upload.</p>
+ERROR - 2020-07-01 14:47:01 --> Severity: Notice --> Undefined index: brand_id C:\xampp\htdocs\bvortex\application\modules\vendor\models\Products_model.php 34
+ERROR - 2020-07-01 14:47:17 --> Could not find the language line "vendor_home_page"
