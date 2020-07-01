@@ -30,11 +30,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="<?= LANG_URL . '/home' ?>"><i class="fa fa-home"></i> <?= lang('vendor_home') ?></a></li>
                         </ul>
-                        <form method="POST" action="<?= LANG_URL . '/vendor/me' ?>" class="vendor-update">
-                            <input type="text" class="form-control" value="<?= $vendor_name ?>" name="vendor_name" placeholder="<?= lang('vendor_name') ?>">
-                            <input type="text" class="form-control" value="<?= $vendor_url ?>" name="vendor_url" placeholder="<?= lang('vendor_url') ?>">
-                            <button type="submit" name="saveVendorDetails" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span></button>
-                        </form>
+                        
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="<?= LANG_URL . '/vendor/logout' ?>"><?= lang('vendor_logout') ?></a></li>
                         </ul>
