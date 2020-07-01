@@ -10,7 +10,7 @@
                                     <input type="email" name="u_email" class="form-control" placeholder="<?= lang('email') ?>">
                                 </div>
                                 <div class="form-group">
-                                    <incdput type="password" name="u_password" class="form-control" placeholder="<?= lang('password') ?>">
+                                    <input type="password" name="u_password" class="form-control" placeholder="<?= lang('password') ?>">
                                 </div>
                                 <div class="checkbox">
                                     <label><input type="checkbox" name="remember_me"><?= lang('remember_me') ?></label>
