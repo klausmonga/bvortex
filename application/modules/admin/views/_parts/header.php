@@ -29,7 +29,7 @@
                         </div>
                         <div id="navbar" class="collapse navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="<?= base_url('admin') ?>"><i class="fa fa-home"></i> Home</a></li>
+                                <li><a href="<?= base_url('home') ?>"><i class="fa fa-home"></i> Home</a></li>
                                 <li><a href="<?= base_url() ?>" target="_blank"><i class="glyphicon glyphicon-star"></i> Production</a></li>
                                 <li>
                                     <a href="javascript:void(0);" class="h-settings"><i class="fa fa-key" aria-hidden="true"></i> Pass Change</a>

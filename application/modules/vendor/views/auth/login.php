@@ -21,6 +21,9 @@
                 <div class="login-help">
                     <a href="<?= LANG_URL . '/vendor/register' ?>"><?= lang('register_me') ?></a> - <a href="<?= LANG_URL . '/vendor/forgotten-password' ?>"><?= lang('forgot_pass') ?></a>
                 </div>
+                <div class="login">
+                    <a color="white" href="<?= LANG_URL . '/home' ?>"><?= lang('home_page') ?></a>
+                </div>
             </div>
         </div>
     </div>

@@ -151,6 +151,7 @@ $lang['password'] = 'Password';
 $lang['remember_me'] = 'Remember me';
 $lang['u_login'] = 'Login';
 $lang['register_me'] = 'Register';
+$lang['home_page'] = 'Back To Home Page';
 $lang['user_login_page'] = 'User login';
 $lang['open_your_account'] = 'Add your products and sell directly through us';
 $lang['login_to_your_acc'] = 'Login to Your Account';

@@ -28,7 +28,7 @@
                     </div>
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="<?= LANG_URL . '/vendor/me' ?>"><i class="fa fa-home"></i> <?= lang('vendor_home') ?></a></li>
+                            <li><a href="<?= LANG_URL . '/home' ?>"><i class="fa fa-home"></i> <?= lang('vendor_home') ?></a></li>
                         </ul>
                         <form method="POST" action="<?= LANG_URL . '/vendor/me' ?>" class="vendor-update">
                             <input type="text" class="form-control" value="<?= $vendor_name ?>" name="vendor_name" placeholder="<?= lang('vendor_name') ?>">
