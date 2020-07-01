@@ -30,7 +30,6 @@
                         <ul class="nav navbar-nav">
                             <li><a href="<?= LANG_URL . '/home' ?>"><i class="fa fa-home"></i> <?= lang('vendor_home') ?></a></li>
                         </ul>
-                        
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="<?= LANG_URL . '/vendor/logout' ?>"><?= lang('vendor_logout') ?></a></li>
                         </ul>
