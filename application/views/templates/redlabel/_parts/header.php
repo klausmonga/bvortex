@@ -35,37 +35,26 @@
         <div id="wrapper">
             <div id="content">
                 
-                <div id="languages-bar">
+                
+            <div id="languages-bar">
                     <div class="container">
-                        <?php
-                        $num_langs = count($allLanguages);
-                        if ($num_langs > 0) {
-                            ?>
-                            <ul class="pull-left">
-                                <?php
-                                $i = 1;
-                                $lang_last = '';
-                                foreach ($allLanguages as $key_lang => $lang) {
-                                    ?>
-                                    <li <?= $i == $num_langs ? 'class="last-item"' : '' ?>>
-                                        <img src="<?= base_url('attachments/lang_flags/' . $lang['flag']) ?>" alt="Language-<?= MY_LANGUAGE_ABBR ?>"><a href="<?= base_url($key_lang) ?>"><?= $lang['name'] ?></a>
-                                    </li>
-                                    <?php
-                                    $i++;
-                                }
-                                ?>
-                            </ul>
-                        <?php } ?>
-                        <div class="phone pull-right">
-                            <?php
-                            if ($footerContactPhone != '') {
-                                ?>
-                                <img src="<?= base_url('template/imgs/Phone-icon.png') ?>" alt="Call us">
-                                <?php
-                                echo $footerContactPhone;
-                            }
-                            ?>
-                        </div>
+                    <div class="user-panel">
+                            <?php if (isset($_SESSION['logged_user'])) { ?>
+                                <a href="<?= LANG_URL . '/myaccount' ?>" class="my-acc">
+                                <span class="glyphicon glyphicon-user fa-2x">
+                                </a>
+                            <?php } else { ?>
+                                <a href="<?= LANG_URL . '/login' ?>" class="my-acc-login">
+                                    <span class="btn btn-primary">Login</span>
+                                </a>
+                                <a href="<?= LANG_URL . '/register' ?>" class="my-acc-register">
+                                <span class="btn btn-default">Inscription</span>
+                                </a>
+                            <?php } ?>
+                            
+                <div class="clearfix"></div>
+            </div>
+                        
                     </div>
                 </div>
                 <div id="top-part">
