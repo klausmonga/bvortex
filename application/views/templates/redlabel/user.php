@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <table class="table table-condensed table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th><?= lang('usr_order_id') ?></th>
+                            <th> Réf de la livraison</th>
                             <th><?= lang('usr_order_date') ?></th>
                             <th><?= lang('usr_order_address') ?></th>
                             <th><?= lang('usr_order_phone') ?></th>
@@ -36,11 +36,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </thead>
                     <tbody>
                         <?php
+                        // var_dump($orders_history);
                         if (!empty($orders_history)) {
                             foreach ($orders_history as $order) {
                                 ?>
                                 <tr>
-                                    <td><?= $order['order_id'] ?></td>
+                                    <td><h1 id ="labelresponse" class="label label-success"><?= $order['ref'] ?></h1></td>
                                     <td><?= date('d.m.Y', $order['date']) ?></td>
                                     <td><?= $order['address'] ?></td>
                                     <td><?= $order['phone'] ?></td>

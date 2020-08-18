@@ -17,8 +17,8 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body>
-        <div id="wrapper">
+    <body onload="show_onload()">
+        <div id="wrapper" style="min-height: 100%; position: relative;">
             <div id="content">
                 <nav class="navbar navbar-blue">
                     <div class="navbar-header">
@@ -38,39 +38,45 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="<?= LANG_URL . '/vendor/logout' ?>"><?= lang('vendor_logout') ?></a></li>
                         </ul>
+                        <div class="container-fluid">
+                            <ul class="nav navbar-nav">
+                                    <li>
+                                        <a href="<?= LANG_URL . '/vendor/me' ?>" aria-expanded="false">
+                                            <i class="mdi mdi-gauge"></i>
+                                            <span class="hide-menu"><?= lang('vendor_dashboard') ?></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= LANG_URL . '/vendor/add/product' ?>" aria-expanded="false">
+                                            <i class="mdi mdi-plus"></i>
+                                            <span class="hide-menu"><?= lang('vendor_add_product') ?></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= LANG_URL . '/vendor/products' ?>" aria-expanded="false">
+                                            <i class="mdi mdi-format-list-bulleted"></i>
+                                            <span class="hide-menu"><?= lang('vendor_products') ?></span>
+                                        </a>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="<?= LANG_URL . '/vendor/orders' ?>" aria-expanded="false">
+                                            <i class="mdi mdi-cart-plus"></i>
+                                            <span class="hide-menu"><?= lang('vendor_orders') ?></span>
+                                        </a>
+                                    </li> -->
+                                    <li>
+                                        <a href="<?= LANG_URL . '/vendor/shipping' ?>" aria-expanded="false">
+                                            <i class="mdi mdi-walk"></i>
+                                            <span class="hide-menu">Shipping</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                </div>
                     </div>
-                </nav>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-3 col-lg-2 left-side">
-                            <ul>
-                                <li>
-                                    <a href="<?= LANG_URL . '/vendor/me' ?>" aria-expanded="false">
-                                        <i class="mdi mdi-gauge"></i>
-                                        <span class="hide-menu"><?= lang('vendor_dashboard') ?></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?= LANG_URL . '/vendor/add/product' ?>" aria-expanded="false">
-                                        <i class="mdi mdi-plus"></i>
-                                        <span class="hide-menu"><?= lang('vendor_add_product') ?></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?= LANG_URL . '/vendor/products' ?>" aria-expanded="false">
-                                        <i class="mdi mdi-format-list-bulleted"></i>
-                                        <span class="hide-menu"><?= lang('vendor_products') ?></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?= LANG_URL . '/vendor/orders' ?>" aria-expanded="false">
-                                        <i class="mdi mdi-cart-plus"></i>
-                                        <span class="hide-menu"><?= lang('vendor_orders') ?></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-9 col-md-9 col-lg-10 col-sm-offset-3 col-md-offset-3 col-lg-offset-2 right-side">
+                </nav>   
+                        <div class="col-sm-12 col-md-12 col-lg-12 right-side">
                             <div class="page-titles">
                                 <h2><?= $title ?></h2>
                             </div>
+                        </div>
+            

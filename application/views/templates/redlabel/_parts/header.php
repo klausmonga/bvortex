@@ -10,7 +10,7 @@
         <meta property="og:description" content="<?= $description ?>" />
         <meta property="og:url" content="<?= LANG_URL ?>" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="<?= base_url('assets/img/site-overview.png') ?>" />
+        <meta property="og:image" content="<?= isset($image)?$image:"https://bvortex.com/attachments/site_logo/jeu__11_06_2020_21_01_17.png" ?>" />
         <title><?= $title ?></title>
         <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.min.css') ?>" />
         <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>" />
@@ -39,7 +39,8 @@
             <div id="languages-bar">
                     <div class="container">
                     <div class="user-panel">
-                            <?php if (isset($_SESSION['logged_user'])) { ?>
+                            <?php 
+                            if (isset($_SESSION['logged_user'])) { ?>
                                 <a href="<?= LANG_URL . '/myaccount' ?>" class="my-acc">
                                 <span class="glyphicon glyphicon-user fa-2x">
                                 </a>

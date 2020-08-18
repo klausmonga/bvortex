@@ -96,7 +96,19 @@ $shipping=26;
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($cartItems['array'] as $item) { ?>
+                                <?php 
+                                $a=0;
+                                $tab=[array("vendor_name"=>null,"cout"=>0,"delais"=>null)];
+                                $this->load->model('vendor/Shipping_model');
+                                foreach ($cartItems['array'] as $item) {
+                                     $this->load->library('../controllers/Api/products');
+                                     $obj = new $this->products();
+                                        $tab[$a]["vendor_name"]=$obj->one_get("en",$item['id'],true)['vendor_name'];
+                                        $tab[$a]["cout"]=$this->Shipping_model->getShipper($obj->one_get("en",$item['id'],true)['vendor_id'])['cout'];
+                                        $tab[$a]["delais"]=$this->Shipping_model->getShipper($obj->one_get("en",$item['id'],true)['vendor_id'])['delais'];
+                                        $tab[$a] = json_encode($tab[$a]);
+                                        $a++;?>
+                                        
                                     <tr>
                                         <td class="relative">
                                             <input type="hidden" name="id[]" value="<?= $item['id'] ?>">
@@ -121,7 +133,7 @@ $shipping=26;
                                         <td><?= $item['price'] . CURRENCY ?></td>
                                         <td><?= $item['sum_price'] . CURRENCY ?></td>
                                     </tr>
-                                <?php } ?>
+                                <?php } $tab = array_unique($tab);?>
                                 <tr>
                                     <td colspan="4" class="text-right"><?= lang('total') ?></td>
                                     <td>
@@ -147,9 +159,22 @@ $shipping=26;
                         <div class="panel-body" id="panelbody" style="display:none">
                             <div class="alert alert-success" role="alert">
                                 <p>Total Panier : <?= $cartItems['finalSum'] ?> <?= CURRENCY ?></p>
-                                <p>Livrasion : <?= $shipping ?> <?= CURRENCY ?></p>
+                                <?php 
+                                $total_shipping=0;
+                                foreach ($tab as $key => $el) {?>
+                                    <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Coût des articles livrable par le vendeur <?= json_decode($el)->{'vendor_name'}?> </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        Coût : <?= json_decode($el)->{'cout'}?> <?= CURRENCY ?><br>
+                                        Délais de livraison : <?= json_decode($el)->{'delais'}?>
+                                    </div>
+                                    </div>
+                                    
+                                <?php $total_shipping+=json_decode($el)->{'cout'};}?>
                             </div>
-                            <div class="alert alert-info" role="alert"><p>Total : <?= $cartItems['finalSum']+ $shipping ?> <?= CURRENCY ?></p></div>
+                            <div class="alert alert-info" role="alert"><p>Total à payer: <?= $cartItems['finalSum']+ $total_shipping ?> <?= CURRENCY ?></p></div>
                         </div>
                     </div>
                 </form>

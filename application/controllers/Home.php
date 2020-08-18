@@ -136,6 +136,7 @@ class Home extends MY_Controller
         $description = url_title(character_limiter(strip_tags($data['product']['description']), 130));
         $description = str_replace("-", " ", $description) . '..';
         $head['description'] = $description;
+        $head['image'] = base_url('attachments/shop_images/'.$data['product']['image']);
         $head['keywords'] = str_replace(" ", ",", $data['product']['title']);
         $this->render('view_product', $head, $data);
     }

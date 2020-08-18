@@ -103,5 +103,9 @@ class Orders_model extends CI_Model
         $result = $this->db->query("SELECT * FROM bank_accounts LIMIT 1");
         return $result->row_array();
     }
-
+    public function getOrderByOrderId($orderId)
+    {
+        $result = $this->db->query("SELECT * FROM orders WHERE order_id=".$orderId);
+        return $result->row_array();
+    }
 }

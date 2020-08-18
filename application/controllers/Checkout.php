@@ -6,11 +6,13 @@ class Checkout extends MY_Controller
 {
 
     private $orderId;
+    private $orderId_auto_gene;
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('admin/Orders_model');
+        $this->load->model('vendor/Shipping_model');
         $this->load->model('Api_model');
     }
 
@@ -38,6 +40,7 @@ class Checkout extends MY_Controller
                      */
                     $this->setVendorOrders();
                     $this->orderId = $orderId;
+                    $this->orderId_auto_gene = $this->Orders_model->getOrderByOrderId($orderId)['id'];
                     $this->goToDestination($this->setActivationLink());
                     $this->sendNotifications();
                 } else {
@@ -47,6 +50,7 @@ class Checkout extends MY_Controller
                 }
             }
         }
+        
         $data['bank_account'] = $this->Orders_model->getBankAccountSettings();
         $data['cashondelivery_visibility'] = $this->Home_admin_model->getValueStore('cashondelivery_visibility');
         $data['paypal_email'] = $this->Home_admin_model->getValueStore('paypal_email');
@@ -90,7 +94,6 @@ class Checkout extends MY_Controller
 
     private function goToDestination($md5)
     {
-        
         if ($_POST['payment_type'] == 'cashOnDelivery' || $_POST['payment_type'] == 'Bank') {
             $this->shoppingcart->clearShoppingCart();
             $this->session->set_flashdata('success_order', true);
@@ -101,15 +104,11 @@ class Checkout extends MY_Controller
             redirect(LANG_URL . '/checkout/successbank');
         }
         if ($_POST['payment_type'] == 'cashOnDelivery') {
-            // $file = fopen("./fichier.txt", "a");
-            // fwrite($file,json_encode($_POST));
-            // fclose($file);
-            
             $pp = new ProcessPayment();
-            $pp->addDev("f952e3f00729000f30a74e765545035db2e0fd7c793a3769601985e1aba8f9b7",
-                        "f952e3f00729000f30a74e765545035db2e0fd7c793a3769601985e1aba8f9b7",
+            $pp->addDev("3905d28f8827b57a944e36891abe6cff924ac54f940c9e53aca884b222e0d7cc",
+                        "3905d28f8827b57a944e36891abe6cff924ac54f940c9e53aca884b222e0d7cc",
                         "0852093279",
-                        "Tradicte11");
+                        "bvortex11");
             $pp->AddBill_to($_POST['phone']);
             $a = 0;
             $this->load->library('../controllers/Api/products');
@@ -120,35 +119,55 @@ class Checkout extends MY_Controller
             while ($a < sizeof($_POST['id'])) {
                 $product = $obj->one_get("en",$_POST['id'][$a],true);
                 $vendor = $this->Api_model->getVendorFromId($product['vendor_id']);
-                $vendors[$a]=$vendor;
+                $vendors[$a]=json_encode($vendor);
                 $pp->addProduct($vendor['url'],$product['price'],$_POST['quantity'][$a],$product['title'],$product['title']);
                 $a=$a+1;   
             }
-            if(isset($_POST['is_for_delevery'])){
-                $pp->addProduct($vendor['url'],$_POST['coutShipping'],1,'livraison','bvortex livraison');
+            $vendors = array_unique($vendors);
+            
+            $a = 0;
+            
+            while ($a < sizeof($vendors)) {
+                $shipper = $this->Shipping_model->getShipper(json_decode($vendors[$a])->{'id'});
+                if(isset($_POST['is_for_delevery'])){
+                    if ($shipper['state']!=0 ) {
+                        $shipping_ids_tab[$a]=$this->Shipping_model->addShipping(array("cout"=>$shipper['cout'], "id_user"=>$_POST['user_id'], "id_shipper"=>$shipper['id'], "id_vendor"=>json_decode($vendors[$a])->{'id'}, "ref"=>time(), "state"=>0, "id_order"=>$this->orderId_auto_gene));
+                        $pp->addProduct(json_decode($vendors[$a])->{'url'},$shipper['cout'],1,'livraison',json_decode($vendors[$a])->{'name'}.' livraison');    
+                    }else{   
+                        $shipping_ids_tab[$a]=$this->Shipping_model->addShipping(array("cout"=>$shipper['cout'], "id_user"=>$_POST['user_id'], "id_shipper"=>$shipper['id'], "id_vendor"=>json_decode($vendors[$a])->{'id'}, "ref"=>time(), "state"=>2, "id_order"=>$this->orderId_auto_gene));
+                        $bvortex_shipper = $this->Shipping_model->getShipper(0);
+                        $vendor = $this->Api_model->getVendorFromId($bvortex_shipper['id_vendor']);
+                        $this->Shipping_model->addShipping(array("cout"=>$bvortex_shipper['cout'], "id_user"=>$_POST['user_id'], "id_shipper"=>$bvortex_shipper['id'], "id_vendor"=>$vendor['id'], "ref"=>time(), "state"=>0, "id_order"=>$this->orderId_auto_gene));
+                        $pp->addProduct($vendor['url'],$bvortex_shipper['cout'],1,'livraison',$vendor['name'].' livraison');
+                    }
+                }else {
+                        $shipping_ids_tab[$a]=$this->Shipping_model->addShipping(array("cout"=>$shipper['cout'], "id_user"=>$_POST['user_id'], "id_shipper"=>$shipper['id'], "id_vendor"=>json_decode($vendors[$a])->{'id'}, "ref"=>time(), "state"=>2, "id_order"=>$this->orderId_auto_gene));
+                        $bvortex_shipper = $this->Shipping_model->getShipper(0);
+                        $vendor = $this->Api_model->getVendorFromId($bvortex_shipper['id_vendor']);
+                        $this->Shipping_model->addShipping(array("cout"=>0, "id_user"=>$_POST['user_id'], "id_shipper"=>$bvortex_shipper['id'], "id_vendor"=>$vendor['id'], "ref"=>time(), "state"=>3, "id_order"=>$this->orderId_auto_gene));
+                }
+                $a=$a+1;
             }
-            var_dump($pp->getProductsList());
-            die();
-            $pp->addP_info("usd",10);
+            
+            
+            $pp->addP_info("usd",5);
             $pp->addRun_env("json");
             
-            $response = json_decode($pp->commit());
-            if (array_key_exists("error",$response)) {
-                redirect(LANG_URL . '/checkout/faildcash');
-                $file = fopen("./fichier.txt", "a");
-                fwrite($file,json_encode($value));
-                fclose($file);   
+            $response = json_decode($pp->commit(),true);
+            var_dump($response);
+            if (!is_array($response) || array_key_exists("error",$response) || array_key_exists("context",$response)) {
+                foreach ($shipping_ids_tab as $key => $value) {
+                    $this->Shipping_model->upShippingStatusById($value,-1);
+                } 
+                redirect(LANG_URL . '/checkout/faildcash'); 
             }else {
                 $home->confirmLink($md5);
                 $a = 0;
                 while ($a < sizeof($vendors)) {
-                    $this->sendsms($vendors[$a]['name'],$vendors[$a]['url']);
+                    $this->sendsms(json_decode($vendors[$a])->{'name'},json_decode($vendors[$a])->{'url'});
                     $a=$a+1;
                 }
-                redirect(LANG_URL . '/checkout/successcash');
-                $file = fopen("./fichier.txt", "a");
-                fwrite($file,$response);
-                fclose($file);
+                redirect(LANG_URL . '/checkout/successcash');           
             }
             
             
